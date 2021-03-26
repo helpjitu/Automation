@@ -3,6 +3,7 @@ package com.jitu.base;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.testng.Assert;
 import com.jitu.utilities.ExcelReader;
 import com.jitu.utilities.Logs;
@@ -15,12 +16,14 @@ import java.util.Properties;
 
 public class Page extends Logs {
 	public static WebDriver driver;
+	public static String browser;
 	public static ExcelReader excel = new ExcelReader(
 			System.getProperty("user.dir") + "/src/test/resources/excel/testdata.xlsx");
 	public static Properties prop;
 	public static String OS = System.getProperty("os.name").toLowerCase();
 
 	public static boolean initConfiguration() {
+		browser="html";
 		if(OS.contains("windows"))
 		{
 			System.setProperty("webdriver.chrome.driver",
@@ -33,8 +36,17 @@ public class Page extends Logs {
 		}
 		if(isInternetConnected() == true)
 		{
-			driver = new ChromeDriver();
-			LOGGER.debug("Launching Chrome");
+			if(browser.equalsIgnoreCase("chrome"))
+			{
+				driver = new ChromeDriver();
+				LOGGER.debug("Launching Chrome");
+			}
+			else if(browser.equalsIgnoreCase("html"))
+			{
+				driver=new HtmlUnitDriver();
+				LOGGER.debug("Launching HTML Unit browser");
+			}
+
 
 			driver.get(Constants.testSiteUrl);
 			driver.manage().window().maximize();
