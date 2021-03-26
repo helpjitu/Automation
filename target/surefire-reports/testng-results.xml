@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2021-03-26T14:09:46 IST" name="Shopping Website Flipkart Automation" finished-at="2021-03-26T14:10:04 IST" duration-ms="17951">
+    <groups>
+    </groups>
+    <test started-at="2021-03-26T14:09:46 IST" name="Test" finished-at="2021-03-26T14:10:04 IST" duration-ms="17951">
+      <class name="com.jitu.testpack.PdfHandlingTest">
+        <test-method signature="verifyContentInPDf()[pri:0, instance:com.jitu.testpack.PdfHandlingTest@151335cb]" started-at="2021-03-26T14:09:46 IST" name="verifyContentInPDf" finished-at="2021-03-26T14:10:03 IST" duration-ms="17064" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyContentInPDf -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.jitu.testpack.PdfHandlingTest@151335cb]" started-at="2021-03-26T14:10:03 IST" name="tearDown" finished-at="2021-03-26T14:10:04 IST" duration-ms="833" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.jitu.testpack.PdfHandlingTest -->
+    </test> <!-- Test -->
+  </suite> <!-- Shopping Website Flipkart Automation -->
+</testng-results>

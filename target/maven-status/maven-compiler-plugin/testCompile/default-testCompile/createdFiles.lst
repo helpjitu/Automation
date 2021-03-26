@@ -1,0 +1,9 @@
+com\jitu\pageFactory\SigninPage.class
+com\jitu\testpack\SignUpTest.class
+com\jitu\testpack\SignInTest.class
+com\jitu\testpack\MySqlConTest.class
+com\jitu\testpack\HomepageTest.class
+com\jitu\runner\TestRunner.class
+com\jitu\testpack\SearchProductTest.class
+com\jitu\testpack\PdfHandlingTest.class
+com\jitu\base\Base.class

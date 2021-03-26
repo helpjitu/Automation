@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Shopping Website Flipkart Automation">
+  <test thread-count="5" name="Test">
+    <classes>
+      <class name="com.jitu.testpack.MySqlConTest"/>
+      <class name="com.jitu.testpack.PdfHandlingTest"/>
+      <class name="com.jitu.testpack.SignInTest"/>
+      <class name="com.jitu.testpack.SignUpTest"/>
+     <class name="com.jitu.testpack.SearchProductTest"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
