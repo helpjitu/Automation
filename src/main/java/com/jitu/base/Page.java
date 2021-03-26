@@ -23,7 +23,7 @@ public class Page extends Logs {
 	public static String OS = System.getProperty("os.name").toLowerCase();
 
 	public static boolean initConfiguration() {
-		browser="html";
+		browser="chrome";
 		if(OS.contains("windows"))
 		{
 			System.setProperty("webdriver.chrome.driver",
