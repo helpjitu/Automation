@@ -34,8 +34,11 @@ public class Page extends Logs {
 			System.setProperty("webdriver.chrome.driver",
 					System.getProperty("user.dir") + "/src/test/resources/driver/chromedriver");
 		}
-		if(isInternetConnected() == true)
-		{
+		if (isInternetConnected() != true) {
+			LOGGER.error("Internet is not connected");
+			Assert.fail();
+			return false;
+		} else {
 			if(browser.equalsIgnoreCase("chrome"))
 			{
 				driver = new ChromeDriver();
@@ -52,14 +55,9 @@ public class Page extends Logs {
 			driver.manage().window().maximize();
 			return true;
 		}
-		else {
-			LOGGER.error("Internet is not connected");
-			Assert.fail();
-			return false;
-		}
 
 
-    }
+	}
 
     public static void openUrl(String URL)
 	{
@@ -82,7 +80,7 @@ public class Page extends Logs {
 			System.setProperty("webdriver.chrome.driver",
 					System.getProperty("user.dir") + "/src/test/resources/driver/chromedriver");
 		}
-		if(isInternetConnected() == true) {
+		if(isInternetConnected()) {
 			driver = new ChromeDriver();
 			LOGGER.debug("Launching Chrome");
 		}
