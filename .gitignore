@@ -1,6 +1,7 @@
 .idea/
 target/
 test-output/
+TestReport/
 *.class
 *.log
 
