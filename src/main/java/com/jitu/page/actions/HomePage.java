@@ -17,7 +17,7 @@ public class HomePage extends Page{
 	
 	public HomePage clickOnSignIn()
 	{
-		LOGGER.info("Clicking on SignInButton");
+		logInfo("Clicking on SignInButton");
 		clickElement(homePageLocators.signInButton);
 		return this;
 	} 

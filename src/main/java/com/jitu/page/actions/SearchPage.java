@@ -19,7 +19,7 @@ public class SearchPage extends Page {
 
     public  void searchProduct(String productName)
     {
-        LOGGER.info("Typing product name");
+        logInfo("Typing product name");
         type(searchPage.searchField,productName);
         Actions actions=new Actions(driver);
         actions.click().sendKeys(Keys.ENTER).perform();

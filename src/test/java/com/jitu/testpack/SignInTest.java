@@ -3,18 +3,16 @@ package com.jitu.testpack;
 import com.jitu.base.Page;
 import org.testng.SkipException;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import com.jitu.page.actions.SignInPage;
 import com.jitu.utilities.Utilities;
 
 import java.util.Hashtable;
 
+@Listeners(com.jitu.listeners.ListenerTestNG.class)
 public class SignInTest extends Page{
-//	@BeforeMethod(dataProviderClass = Utilities.class,dataProvider = "dp")
-//	public void start()
-//	{
-//		initConfiguration();
-//	}
+
 	@Test(dataProviderClass = Utilities.class,dataProvider = "dp")
 	public void signInTest(Hashtable<String, String> data)
 	{

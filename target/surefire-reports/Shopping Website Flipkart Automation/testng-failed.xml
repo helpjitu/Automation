@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Failed suite [Shopping Website Flipkart Automation]" guice-stage="DEVELOPMENT" verbose="0">
+  <listeners>
+    <listener class-name="com.jitu.listeners.ListenerTestNG"/>
+  </listeners>
   <test thread-count="5" name="Test(failed)" verbose="0">
     <classes>
       <class name="com.jitu.testpack.PdfHandlingTest">
@@ -9,12 +12,6 @@
           <include name="tearDown"/>
         </methods>
       </class> <!-- com.jitu.testpack.PdfHandlingTest -->
-      <class name="com.jitu.testpack.SignInTest">
-        <methods>
-          <include name="end"/>
-          <include name="signInTest" invocation-numbers="0 1"/>
-        </methods>
-      </class> <!-- com.jitu.testpack.SignInTest -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Shopping Website Flipkart Automation] -->

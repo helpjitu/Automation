@@ -18,20 +18,20 @@ public class SignInPage extends Page{
 	
 	public void doLogin(String username, String password)
 	{
-		LOGGER.info("Entering email: "+username);
+		logInfo("Entering email: "+username);
 		type(signInPage.emailMobile, username);
-		LOGGER.info("Entering password: "+password);
+		logInfo("Entering password: "+password);
 		type(signInPage.password, password);
-		LOGGER.info("Clicking on sign in button");
+		logInfo("Clicking on sign in button");
 		clickElement(signInPage.signInButton);
 	}
 	public void doSignUp(String emailMobile)
 	{
-		LOGGER.info("Clicking on sign up button");
+		logInfo("Clicking on sign up button");
 		clickElement(signInPage.signUpButton);
-		LOGGER.info("Entering email: "+emailMobile);
+		logInfo("Entering email: "+emailMobile);
 		type(signInPage.emailMobile, emailMobile);
-		LOGGER.info("Clicking on continue button");
+		logInfo("Clicking on continue button");
 		clickElement(signInPage.continueButton);
 
 	}

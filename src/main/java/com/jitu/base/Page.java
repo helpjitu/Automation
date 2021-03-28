@@ -1,5 +1,7 @@
 package com.jitu.base;
 
+import com.aventstack.extentreports.Status;
+import com.jitu.extents.ExtentTestManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -11,8 +13,8 @@ import com.jitu.utilities.Logs;
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.List;
 import java.util.Properties;
-
 
 public class Page extends Logs {
 	public static WebDriver driver;
@@ -23,7 +25,7 @@ public class Page extends Logs {
 	public static String OS = System.getProperty("os.name").toLowerCase();
 
 	public static boolean initConfiguration() {
-		browser="chrome";
+		browser=loadProp().getProperty("browser");
 		if(OS.contains("windows"))
 		{
 			System.setProperty("webdriver.chrome.driver",
@@ -34,36 +36,35 @@ public class Page extends Logs {
 			System.setProperty("webdriver.chrome.driver",
 					System.getProperty("user.dir") + "/src/test/resources/driver/chromedriver");
 		}
-		if (isInternetConnected() != true) {
+		if (!isInternetConnected()) {
 			LOGGER.error("Internet is not connected");
-			Assert.fail();
+			Assert.fail("No Internet Connectivity");
 			return false;
 		} else {
 			if(browser.equalsIgnoreCase("chrome"))
 			{
 				driver = new ChromeDriver();
-				LOGGER.debug("Launching Chrome");
+				logInfo("Launching Chrome");
 			}
 			else if(browser.equalsIgnoreCase("html"))
 			{
 				driver=new HtmlUnitDriver();
-				LOGGER.debug("Launching HTML Unit browser");
+				logInfo("Launching HTML Unit browser");
 			}
-
 
 			driver.get(Constants.testSiteUrl);
 			driver.manage().window().maximize();
 			return true;
 		}
 
-
 	}
 
-    public static void openUrl(String URL)
+
+    public static void openUrl(String url)
 	{
 		if (driver!=null)
 		{
-			driver.get(URL);
+			driver.get(url);
 			driver.manage().window().maximize();
 		}
 	}
@@ -82,23 +83,23 @@ public class Page extends Logs {
 		}
 		if(isInternetConnected()) {
 			driver = new ChromeDriver();
-			LOGGER.debug("Launching Chrome");
+			logInfo("Launching Chrome");
 		}
 		else
 		{
-			LOGGER.debug("Internet not Connected");
+			logInfo("Internet not Connected");
 		}
 		return driver;
 	}
 
 	public static void clickElement(WebElement element) {
 		element.click();
-		LOGGER.info("Clicking on an Element: " + element);
+		logInfo("Clicking on an Element: " + element);
 	}
 
 	public static void type(WebElement element, String value) {
 		element.sendKeys(value);
-		LOGGER.info("Entering the value as: " + value + " for the element: " + element);
+		logInfo("Entering the value as: " + value + " for the element: " + element);
 	}
 
 	public void tearDown() {
@@ -150,5 +151,29 @@ public class Page extends Logs {
 			System.err.println("Error while writing to file: " +
 					e.getMessage());
 		}
+	}
+	public void navigateTo(String url)
+	{
+		driver.navigate().to(url);
+	}
+	public static void logInfo(String logMessage)
+	{
+		ExtentTestManager.getTest().log(Status.INFO,logMessage);
+	}
+	public static void logPass(String logMessage)
+	{
+		ExtentTestManager.getTest().log(Status.PASS,logMessage);
+	}
+	public static void logFail(String logMessage)
+	{
+		ExtentTestManager.getTest().log(Status.FAIL,logMessage);
+	}
+	public static void logSkip(String logMessage)
+	{
+		ExtentTestManager.getTest().log(Status.SKIP,logMessage);
+	}
+	public static void logWarning(String logMessage)
+	{
+		ExtentTestManager.getTest().log(Status.WARNING,logMessage);
 	}
 }
