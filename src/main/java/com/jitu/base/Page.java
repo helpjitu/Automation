@@ -2,10 +2,14 @@ package com.jitu.base;
 
 import com.aventstack.extentreports.Status;
 import com.jitu.extents.ExtentTestManager;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.openqa.selenium.io.FileHandler;
 import org.testng.Assert;
 import com.jitu.utilities.ExcelReader;
 import com.jitu.utilities.Logs;
@@ -152,6 +156,49 @@ public class Page extends Logs {
 					e.getMessage());
 		}
 	}
+
+	public static void takeSnapShot(String fileWithPath,String screenshotName){
+
+		//Convert web driver object to TakeScreenshot
+
+		TakesScreenshot scrShot =((TakesScreenshot)driver);
+
+		//Call getScreenshotAs method to create image file
+
+		File SrcFile=scrShot.getScreenshotAs(OutputType.FILE);
+
+		String fileSeparate=fileSeparator();
+
+		//Move image file to new destination
+
+		File DestFile=new File(fileWithPath);
+		if (!DestFile.exists()){
+			DestFile.mkdirs();
+		}
+		//Copy file at destination
+
+		try {
+
+			FileHandler.copy(SrcFile, new File(DestFile+fileSeparate+screenshotName));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public String getTitle()
+	{
+		String pageTitle;
+		pageTitle=driver.getTitle().trim();
+		return pageTitle;
+	}
+
+	public static String fileSeparator()
+	{
+		String fileSeparator=System.getProperty("file.separator");
+		return fileSeparator;
+	}
+
 	public void navigateTo(String url)
 	{
 		driver.navigate().to(url);

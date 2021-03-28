@@ -1,6 +1,7 @@
 package com.jitu.testpack;
 
 import com.jitu.base.Page;
+import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Listeners;
@@ -17,18 +18,19 @@ public class SearchProductTest extends Page {
     public void searchProductTest(Hashtable<String, String> data) throws InterruptedException {
         if(data.get("runmode").equalsIgnoreCase("N"))
         {
+            logSkip("Skipping the test as the Run mode is NO");
             throw new SkipException("Skipping the test as the Run mode is NO");
         }
         else {
 
             if (initConfiguration())
             {
-                logInfo("");
                 SignInPage signInPage=new SignInPage();
                 signInPage.doLogin(data.get("username"),data.get("password"));
                 SearchPage searchPage=new SearchPage();
                 searchPage.searchProduct(data.get("productName"));
                 Thread.sleep(3000);
+                Assert.assertEquals("Hello",getTitle());
             }
         }
     }

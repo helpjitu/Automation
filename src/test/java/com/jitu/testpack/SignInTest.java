@@ -18,6 +18,7 @@ public class SignInTest extends Page{
 	{
 		if(data.get("runmode").equalsIgnoreCase("N"))
 		{
+			logSkip("Skipping the test as the Run mode is NO");
 			throw new SkipException("Skipping the test as the Run mode is NO");
 		}
 		else {
