@@ -1,3 +1,6 @@
-/.idea/
-/target/
-/test-output/
+.idea/
+target/
+test-output/
+*.class
+*.log
+
