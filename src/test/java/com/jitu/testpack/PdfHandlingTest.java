@@ -32,7 +32,6 @@ public class PdfHandlingTest extends Page {
 		{
 			String pdfContent = readPdfContent(url);
 			Assert.assertTrue(pdfContent.contains("The Pdf995 Suite offers the following features"));
-			logPass("Test Passed");
 		}
 		catch (IOException e)
 		{
