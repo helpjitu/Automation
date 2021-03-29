@@ -4,6 +4,7 @@ package com.jitu.testpack;
  * @since 29-03-2021
  * @project Shopping
  */
+import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.jitu.base.Page;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -43,7 +44,7 @@ public class MySqlConTest extends Page {
             logInfo(column1 + space + column2 + space + column3);
             while (rs.next())
             {
-                logInfo(rs.getString(1) + space + rs.getString(2) + space + rs.getString(3));
+                logInfo((rs.getString(1) + space + rs.getString(2) + space + rs.getString(3)));
                 System.out.println(rs.getString(1) + space + rs.getString(2) + space + rs.getString(3));
             }
             con.close();

@@ -29,6 +29,4 @@ public class ExtentTestManager {
         extentTestMap.put((int) (Thread.currentThread().getId()), test);
         return test;
     }
-
-
 }

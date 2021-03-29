@@ -4,7 +4,8 @@ package com.jitu.base;
  * @since 29-03-2021
  * @project Shopping
  */
-import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.jitu.extents.ExtentTestManager;
 import com.jitu.utilities.ExcelReader;
 import org.openqa.selenium.OutputType;
@@ -160,22 +161,22 @@ public class Page {
 
 	public static void logInfo(String logMessage)
 	{
-		ExtentTestManager.getTest().log(Status.INFO,logMessage);
+		ExtentTestManager.getTest().info(MarkupHelper.createLabel(logMessage,ExtentColor.WHITE));
 	}
 	public static void logPass(String logMessage)
 	{
-		ExtentTestManager.getTest().log(Status.PASS,logMessage);
+		ExtentTestManager.getTest().pass(MarkupHelper.createLabel(logMessage, ExtentColor.GREEN));
 	}
 	public static void logFail(String logMessage)
 	{
-		ExtentTestManager.getTest().log(Status.FAIL,logMessage);
+		ExtentTestManager.getTest().fail(MarkupHelper.createLabel(logMessage, ExtentColor.RED));
 	}
 	public static void logSkip(String logMessage)
 	{
-		ExtentTestManager.getTest().log(Status.SKIP,logMessage);
+		ExtentTestManager.getTest().skip(MarkupHelper.createLabel(logMessage, ExtentColor.GREY));
 	}
 	public static void logWarning(String logMessage)
 	{
-		ExtentTestManager.getTest().log(Status.WARNING,logMessage);
+		ExtentTestManager.getTest().warning(MarkupHelper.createLabel(logMessage, ExtentColor.AMBER));
 	}
 }
