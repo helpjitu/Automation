@@ -1,15 +1,19 @@
 package com.jitu.page.actions;
-
+/*
+ * @author Jitendra
+ * @since 29-03-2021
+ * @project Shopping
+ */
 import com.jitu.base.Page;
-import com.jitu.page.locators.GoIbiboHome;
+import com.jitu.page.locators.GoIbiboHomeLocators;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
 public class GoIbibo extends Page {
-    public GoIbiboHome goIbiboHome;
+    public GoIbiboHomeLocators goIbiboHome;
     public GoIbibo()
     {
-        this.goIbiboHome=new GoIbiboHome();
+        this.goIbiboHome=new GoIbiboHomeLocators();
         AjaxElementLocatorFactory factory =new AjaxElementLocatorFactory(driver,10);
         PageFactory.initElements(factory, this.goIbiboHome);
     }

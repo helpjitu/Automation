@@ -1,9 +1,13 @@
 package com.jitu.page.locators;
-
+/*
+ * @author Jitendra
+ * @since 29-03-2021
+ * @project Shopping
+ */
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class GoIbiboHome {
+public class GoIbiboHomeLocators {
     @FindBy(xpath = "//input[@id='fromCity']")
     public WebElement sourcePlace;
     @FindBy(xpath = "//input[@id='toCity']")

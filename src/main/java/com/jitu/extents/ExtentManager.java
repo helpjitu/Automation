@@ -1,17 +1,22 @@
 package com.jitu.extents;
-
+/*
+ * @author Jitendra
+ * @since 29-03-2021
+ * @project Shopping
+ */
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
+import com.aventstack.extentreports.reporter.configuration.ViewName;
 
 import java.io.File;
 
 public class ExtentManager {
     private static ExtentReports extent;
     private static String reportFileName = "Test-Automaton-Report"+".html";
-    private static String fileSeperator = System.getProperty("file.separator");
-    private static String reportFilepath = System.getProperty("user.dir") +fileSeperator+ "TestReport";
-    private static String reportFileLocation =  reportFilepath +fileSeperator+ reportFileName;
+    private static String fileSeparator = System.getProperty("file.separator");
+    private static String reportFilepath = System.getProperty("user.dir") +fileSeparator+ "TestReport";
+    private static String reportFileLocation =  reportFilepath +fileSeparator+ reportFileName;
 
 
     public static ExtentReports getInstance() {
@@ -24,7 +29,7 @@ public class ExtentManager {
     public static ExtentReports createInstance() {
         String fileName = getReportPath(reportFilepath);
 
-        ExtentSparkReporter spark = new ExtentSparkReporter(fileName);
+        ExtentSparkReporter spark = new ExtentSparkReporter(fileName).viewConfigurer().viewOrder().as(new ViewName[] {ViewName.DASHBOARD,ViewName.TEST,ViewName.CATEGORY,ViewName.EXCEPTION}).apply();
 
         spark.config().setTheme(Theme.STANDARD);
         spark.config().setDocumentTitle(reportFileName);

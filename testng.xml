@@ -12,6 +12,6 @@
         </classes>
     </test> <!-- Test -->
 <listeners>
-    <listener class-name="com.jitu.listeners.ListenerTestNG"></listener>
+    <listener class-name="com.jitu.listeners.ListenerTestNG"/>
 </listeners>
 </suite> <!-- Suite -->

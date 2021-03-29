@@ -1,6 +1,9 @@
 package com.jitu.testpack;
-
-
+/*
+ * @author Jitendra
+ * @since 29-03-2021
+ * @project Shopping
+ */
 import com.jitu.base.Page;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
@@ -34,7 +37,6 @@ public class PdfHandlingTest extends Page {
 		catch (IOException e)
 		{
 			logWarning("Exception thrown: "+e);
-			System.out.println(e);
 		}
 	}
 

@@ -1,5 +1,9 @@
 package com.jitu.utilities;
-
+/*
+ * @author Jitendra
+ * @since 29-03-2021
+ * @project Shopping
+ */
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -21,7 +25,6 @@ import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 
 public class ExcelReader {
 	
@@ -56,8 +59,7 @@ public class ExcelReader {
 			return 0;
 		else{
 		sheet = workbook.getSheetAt(index);
-		int number=sheet.getLastRowNum()+1;
-		return number;
+			return sheet.getLastRowNum()+1;
 		}
 		
 	}
@@ -361,7 +363,7 @@ public class ExcelReader {
 				return false;
 			
 		XSSFCellStyle style = workbook.createCellStyle();
-		style.setFillPattern(FillPatternType.SOLID_FOREGROUND);;		
+		style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 		sheet=workbook.getSheetAt(index);
 		
 		row = sheet.getRow(0);
@@ -396,7 +398,7 @@ public class ExcelReader {
 	// removes a column and all the contents
 	public boolean removeColumn(String sheetName, int colNum) {
 		try{
-		if(!isSheetExist(sheetName))
+		if(isSheetExist(sheetName))
 			return false;
 		fis = new FileInputStream(path); 
 		workbook = new XSSFWorkbook(fis);
@@ -438,20 +440,17 @@ public class ExcelReader {
 		int index = workbook.getSheetIndex(sheetName);
 		if(index==-1){
 			index=workbook.getSheetIndex(sheetName.toUpperCase());
-				if(index==-1)
-					return false;
-				else
-					return true;
+			return index == -1;
 		}
 		else
-			return true;
+			return false;
 	}
 	
 	
 	// returns number of columns in a sheet	
 	public int getColumnCount(String sheetName){
 		// check if sheet exists
-		if(!isSheetExist(sheetName))
+		if(isSheetExist(sheetName))
 		 return -1;
 		
 		sheet = workbook.getSheet(sheetName);
@@ -472,7 +471,7 @@ public class ExcelReader {
 		
 		
 		url=url.replace('\\', '/');
-		if(!isSheetExist(sheetName))
+		if(isSheetExist(sheetName))
 			 return false;
 		
 	    sheet = workbook.getSheet(sheetName);
@@ -498,20 +497,4 @@ public class ExcelReader {
 		return -1;
 		
 	}
-		
-	
-	// to run this on stand alone
-	public static void main(String arg[]) throws IOException{
-		
-		
-		ExcelReader datatable = null;
-		
-
-			 datatable = new ExcelReader("C:\\CM3.0\\app\\test\\Framework\\AutomationBvt\\src\\config\\xlfiles\\Controller.xlsx");
-				for(int col=0 ;col< datatable.getColumnCount("TC5"); col++){
-					System.out.println(datatable.getCellData("TC5", col, 1));
-				}
-	}
-	
-	
 }

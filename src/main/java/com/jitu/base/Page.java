@@ -1,26 +1,29 @@
 package com.jitu.base;
-
+/*
+ * @author Jitendra
+ * @since 29-03-2021
+ * @project Shopping
+ */
 import com.aventstack.extentreports.Status;
 import com.jitu.extents.ExtentTestManager;
-import org.apache.commons.io.FileUtils;
+import com.jitu.utilities.ExcelReader;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
-import org.openqa.selenium.io.FileHandler;
 import org.testng.Assert;
-import com.jitu.utilities.ExcelReader;
-import com.jitu.utilities.Logs;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.List;
 import java.util.Properties;
 
-public class Page extends Logs {
+public class Page {
 	public static WebDriver driver;
 	public static String browser;
 	public static ExcelReader excel = new ExcelReader(
@@ -41,7 +44,7 @@ public class Page extends Logs {
 					System.getProperty("user.dir") + "/src/test/resources/driver/chromedriver");
 		}
 		if (!isInternetConnected()) {
-			LOGGER.error("Internet is not connected");
+			logFail("Internet is not connected");
 			Assert.fail("No Internet Connectivity");
 			return false;
 		} else {
@@ -56,7 +59,7 @@ public class Page extends Logs {
 				logInfo("Launching HTML Unit browser");
 			}
 
-			driver.get(Constants.testSiteUrl);
+			driver.get(loadProp().getProperty("testSiteUrl"));
 			driver.manage().window().maximize();
 			return true;
 		}
@@ -73,7 +76,7 @@ public class Page extends Logs {
 		}
 	}
 
-    public static WebDriver initBrowser()
+    public static void initBrowser()
 	{
 		if(OS.contains("windows"))
 		{
@@ -93,7 +96,6 @@ public class Page extends Logs {
 		{
 			logInfo("Internet not Connected");
 		}
-		return driver;
 	}
 
 	public static void clickElement(WebElement element) {
@@ -144,45 +146,8 @@ public class Page extends Logs {
 		}
 	}
 
-	public static void writeToFile(String dataToWrite)
-	{
-		try{
-			FileWriter fstream = new FileWriter("test-output/Logs/Application.log",true);
-			BufferedWriter out = new BufferedWriter(fstream);
-			out.write(dataToWrite+"\n");
-			out.close();
-		}catch (Exception e){
-			System.err.println("Error while writing to file: " +
-					e.getMessage());
-		}
-	}
-
-	public static void takeSnapShot(String fileWithPath,String screenshotName){
-
-		//Convert web driver object to TakeScreenshot
-
-		TakesScreenshot scrShot =((TakesScreenshot)driver);
-
-		//Call getScreenshotAs method to create image file
-
-		File SrcFile=scrShot.getScreenshotAs(OutputType.FILE);
-
-		String fileSeparate=fileSeparator();
-
-		//Move image file to new destination
-
-		File DestFile=new File(fileWithPath);
-		if (!DestFile.exists()){
-			DestFile.mkdirs();
-		}
-		//Copy file at destination
-
-		try {
-
-			FileHandler.copy(SrcFile, new File(DestFile+fileSeparate+screenshotName));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public String takeSnapShot(){
+		return ((TakesScreenshot)driver).getScreenshotAs(OutputType.BASE64);
 
 	}
 
@@ -193,16 +158,6 @@ public class Page extends Logs {
 		return pageTitle;
 	}
 
-	public static String fileSeparator()
-	{
-		String fileSeparator=System.getProperty("file.separator");
-		return fileSeparator;
-	}
-
-	public void navigateTo(String url)
-	{
-		driver.navigate().to(url);
-	}
 	public static void logInfo(String logMessage)
 	{
 		ExtentTestManager.getTest().log(Status.INFO,logMessage);

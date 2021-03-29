@@ -1,5 +1,9 @@
 package com.jitu.utilities;
-
+/*
+ * @author Jitendra
+ * @since 29-03-2021
+ * @project Shopping
+ */
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -32,7 +36,7 @@ public class Utilities extends Page {
 	}
 
 	@DataProvider(name="dp")
-	public Object[][] getData(Method m) {
+	public static Object[][] getData(Method m) {
 
 		String sheetName = m.getName();
 		System.out.println(sheetName+" Sheet name");
@@ -41,11 +45,11 @@ public class Utilities extends Page {
 
 		Object[][] data = new Object[rows - 1][1];
 		
-		Hashtable<String,String> table = null;
+		Hashtable<String,String> table;
 
 		for (int rowNum = 2; rowNum <= rows; rowNum++) { // 2
 
-			table = new Hashtable<String,String>();
+			table = new Hashtable<>();
 			
 			for (int colNum = 0; colNum < cols; colNum++) {
 
@@ -73,11 +77,8 @@ public static boolean isTestRunnable(String testName, ExcelReader excel){
 			if(testCase.equalsIgnoreCase(testName)){
 				
 				String runmode = excel.getCellData(sheetName, "Runmode", rNum);
-				
-				if(runmode.equalsIgnoreCase("Y"))
-					return true;
-				else
-					return false;
+
+				return runmode.equalsIgnoreCase("Y");
 			}
 			
 			

@@ -1,5 +1,9 @@
 package com.jitu.page.actions;
-
+/*
+ * @author Jitendra
+ * @since 29-03-2021
+ * @project Shopping
+ */
 import com.jitu.base.Page;
 import com.jitu.page.locators.SearchPageLocators;
 import org.openqa.selenium.Keys;

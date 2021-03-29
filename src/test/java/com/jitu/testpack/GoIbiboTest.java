@@ -1,5 +1,9 @@
 package com.jitu.testpack;
-
+/*
+ * @author Jitendra
+ * @since 29-03-2021
+ * @project Shopping
+ */
 import com.jitu.base.Page;
 import com.jitu.page.actions.GoIbibo;
 import org.openqa.selenium.By;
@@ -11,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 
 public class GoIbiboTest extends Page {
     @Test
-    public void checkDynamicDropDown() throws InterruptedException {
+    public void checkDynamicDropDown() {
         initBrowser();
         openUrl("https://www.makemytrip.com/");
         GoIbibo goIbibo=new GoIbibo();
