@@ -36,11 +36,11 @@ public class MySqlConTest extends Page {
             String column2 = rsmd.getColumnName(2);
             String column3 = rsmd.getColumnName(3);
             System.out.println(column1 + space + column2 + space + column3);
-            writeToFile(column1 + space + column2 + space + column3);
+            logInfo(column1 + space + column2 + space + column3);
             while (rs.next())
             {
+                logInfo(rs.getString(1) + space + rs.getString(2) + space + rs.getString(3));
                 System.out.println(rs.getString(1) + space + rs.getString(2) + space + rs.getString(3));
-                writeToFile(rs.getString(1) + space + rs.getString(2) + space + rs.getString(3));
             }
             con.close();
             logInfo("Query execution completed");
