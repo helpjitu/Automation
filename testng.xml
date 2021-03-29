@@ -3,11 +3,11 @@
 <suite name="Shopping Website Flipkart Automation">
     <test thread-count="5" name="Test">
         <classes>
-            <class name="com.jitu.testpack.MySqlConTest"/>
-            <class name="com.jitu.testpack.SignInTest"/>
-            <class name="com.jitu.testpack.SignUpTest"/>
+<!--            <class name="com.jitu.testpack.MySqlConTest"/>-->
+<!--            <class name="com.jitu.testpack.SignInTest"/>-->
+<!--            <class name="com.jitu.testpack.SignUpTest"/>-->
             <class name="com.jitu.testpack.SearchProductTest"/>
-            <class name="com.jitu.testpack.PdfHandlingTest"/>
+<!--            <class name="com.jitu.testpack.PdfHandlingTest"/>-->
 
         </classes>
     </test> <!-- Test -->
