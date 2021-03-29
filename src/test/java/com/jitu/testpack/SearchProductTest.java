@@ -35,7 +35,7 @@ public class SearchProductTest extends Page {
                 SearchPage searchPage=new SearchPage();
                 searchPage.searchProduct(data.get("productName"));
                 Thread.sleep(3000);
-                Assert.assertEquals(driver.getTitle(),getTitle());
+                Assert.assertEquals(getTitle(),getTitle()+"Hello");
             }
         }
     }
